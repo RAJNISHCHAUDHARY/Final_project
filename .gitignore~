@@ -2,5 +2,5 @@
 .idea/*
 *.pyc
 *.pyo
-migrations/*
+migratipons/*
 settings.py/*
