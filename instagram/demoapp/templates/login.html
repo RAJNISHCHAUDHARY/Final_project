@@ -10,7 +10,7 @@
 }
 .nav{
     color:white;
-    font-size: 30px;
+    font-size: 40px;
    padding-top:20px;
    padding-left:60px;
     background:green;
@@ -22,19 +22,14 @@
 }
 .nav input{
 margin-top:30px;
-     width:200px;
+     width:400px;
 	 height:30px;
 	 font-size:25px;
 	 border-radius:5px;
 }
-.nav input[name="email"]{
+.nav input[name="password"]{
 
      width:400px;
-
-}
-.nav input[type="checkbox"]{
-     margin-top:5px;
-     width:25px;
 
 }
 .nav input[type="submit"]{
@@ -57,19 +52,16 @@ margin-top:30px;
     </style>
     <h1 align="center">Today's date  and time,{{today}}</h1>
 </head>
-   
-    
+
+
     <body background="2.jpg">
         <div class="nav">
-            INSTACLONE SIGN_UP FORM
-            <form method ="POST">
-                {% csrf_token %}
-            <input type="text" placeholder="Username" name="Username" value="{{Username}}">
-            <input type="text" placeholder="name" name="Name" value="{{Name}}"><br>
-            <input type="email" placeholder="Enter email" name="Email"value="{{Email}}"><br>
-            <input type="Password" placeholder="Enter your password" name="Password "value="{{Password}}"><br>
-            <input type="submit" value="Register">
+            User Login Form<hr>
+            <form method ="post">
+            Username:<input type="text" placeholder="Username" name="Username" value="{{Username}}">
+            Password:<input type="Password" placeholder="Enter your password" name="pass"value="{{password}}"><br>
+            <input type="submit" name="button" value="Log In">
             </form>
-        </div>  
+        </div>
     </body>
 </html>
