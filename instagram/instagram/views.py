@@ -24,7 +24,7 @@ def signup_view(request):
             template_name = 'failed.html'
     else:
         form = SignUpForms()
-        template_name = 'register.html'
+        template_name = 'signup.html'
 
     return render(request, template_name, {'form':form})
 
