@@ -23,5 +23,3 @@ class SessionToken(models.Model):
 
         def create_token(self):
             self.session_token = uuid.uuid4()
-
-

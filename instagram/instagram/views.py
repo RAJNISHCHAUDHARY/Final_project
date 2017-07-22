@@ -19,10 +19,14 @@ def signup_view(request):
             # insert data to db
             new_user = UserModel(Name=Name,Password=make_password(Password),Username=Username, Email=Email)
             new_user.save()
-            return render(request,'success.html')
+            template_name = 'success.html'
+        else:
+            template_name = 'failed.html'
     else:
         form = SignUpForms()
-    return render(request,'register.html',{'form':form})
+        template_name = 'register.html'
+
+    return render(request, template_name, {'form':form})
 
 
 def login_view(request):
@@ -35,13 +39,13 @@ def login_view(request):
         login_form = LoginForm(request.POST)
         if login_form.is_valid():
             #Validation Success
-            username = login_form.cleaned_data['username']
-            password = login_form.cleaned_data['password']
+            Username = login_form.cleaned_data['Username']
+            Password = login_form.cleaned_data['Password']
             #read Data From db
-            user = UserModel.objects.filter(username=username).first()
+            user = UserModel.objects.filter(Username=Username).first()
             if user:
                 #compare Password
-                if check_password(password, user.password):
+                if check_password(Password, user.Password):
                     #successfully Login
                     template_name = 'login_success.html'
                 else:

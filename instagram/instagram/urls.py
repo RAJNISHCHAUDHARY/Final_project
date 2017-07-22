@@ -18,6 +18,6 @@ from django.contrib import admin
 from views import signup_view,login_view
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^',signup_view),
+    url(r'^signup',signup_view),
     url(r'^login',login_view),
 ]
