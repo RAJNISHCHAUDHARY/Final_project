@@ -3,9 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>Post</title>
+    <style>
+        body{
+    background:url('2.jpg');
+    background-size:100% 620px;
+    padding-top:80px;
+}
+.nav{
+    color:white;
+    font-size: 30px;
+   padding-top:10px;
+   padding-left:60px;
+    background:#7733FF    ;
+    width:900px;
+    height:400px;
+    margin: auto;
+    border-radius: 10px;
+    opacity: .9;
+}
+    </style>
 </head>
 <body>
-
+    <div class="nav">
     <form method="POST" action="" enctype="multipart/form-data">
         {% csrf_token %}
 
@@ -21,5 +40,6 @@
 
         <input type="submit" class="btn btn-default" value="Post">
     </form>
+    </div>
 </body>
 </html>

@@ -84,7 +84,7 @@ def post_view(request):
                 post = PostModel(user=user, image=image, caption=caption)
                 post.save()
 
-                path = str(BASE_DIR + post.image.url)
+                path = str(BASE_DIR+"//"+post.image.url)
 
                 client = ImgurClient('d2d18027cc82a9e', '455ca114d7df83fad4fae1091316dfab42087c18')
                 post.image_url = client.upload_from_path(path,anon=True)['link']
