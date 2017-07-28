@@ -1,9 +1,11 @@
+
 # -*- coding: utf-8 -*-
+# -----------------------------------------Import a file for another files----------------------------------------------------------
 from __future__ import unicode_literals
 
 from django.db import models
 import uuid
-# Create your models here.
+#----------------------------------------- Create your models here-----------------------------------------------------------------------.
 class UserModel(models.Model):
     Email = models.EmailField()
     Name = models.CharField(max_length=255)
@@ -13,7 +15,7 @@ class UserModel(models.Model):
     Updated_on = models.DateTimeField(auto_now=True)
 
 
-#here the code to create a session
+#----------------------------------------- Create a session model here---------------------------------------------------------------
 class SessionToken(models.Model):
         user = models.ForeignKey(UserModel)
         session_token = models.CharField(max_length=255)
@@ -24,7 +26,7 @@ class SessionToken(models.Model):
         def create_token(self):
             self.session_token = uuid.uuid4()
 
-
+#--------------------------------------------Create a postmodel of user---------------------------------------------------------------
 class PostModel(models.Model):
 	    user = models.ForeignKey(UserModel)
 	    image = models.FileField(upload_to='user_images')
@@ -43,6 +45,8 @@ class PostModel(models.Model):
 	    def comments(self):
 		return CommentModel.objects.filter(post=self).order_by('created_on')
 
+
+#------------------------------------------- Create a like model of user-------------------------------------------------------------
 class LikeModel(models.Model):
 	    user = models.ForeignKey(UserModel)
 	    post = models.ForeignKey(PostModel)
@@ -50,6 +54,7 @@ class LikeModel(models.Model):
 	    updated_on = models.DateTimeField(auto_now=True)
 
 
+# --------------------------------------------Create a Comment model for user-------------------------------------------------------------------
 class CommentModel(models.Model):
 	    user = models.ForeignKey(UserModel)
 	    post = models.ForeignKey(PostModel)

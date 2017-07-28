@@ -45,8 +45,9 @@ margin-right:5px;
     {% for post in posts %}
 
 
-        <h3> Posted by: {{ post.user.username }} </h3>
+        <h3> Posted by:{{ post.user.username }} </h3>
         <p>[{{ post.created_on }}]</p>
+
         <img style="display:inline-block; width:350px; height:300px;"
              src="{{ post.image_url }}" /><br>
         <span  style="display:inline-block;">{{ post.caption }}</span><br/><br/>

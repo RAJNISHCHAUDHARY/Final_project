@@ -1,4 +1,5 @@
-# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*
+# ----------------------------------------here we-import files---------------------------------------------------------------
 from __future__ import unicode_literals
 
 from django.shortcuts import render,redirect
@@ -11,6 +12,7 @@ from django.utils import timezone
 from imgurpython import ImgurClient
 # Create your views here.
 def signup_view(request):
+    #------------------------------here is the logic of the functions--------------------------------------------------------
     if request.method == 'POST':
         form = SignUpForms(request.POST)
         if form.is_valid():
@@ -21,6 +23,7 @@ def signup_view(request):
             # insert data to db
             new_user = UserModel(Name=Name,Password=make_password(Password),Username=Username, Email=Email)
             new_user.save()
+     #--------------------------here we give conditions which open success page or failed page ----------------------------------
             template_name = 'success.html'
         else:
             template_name = 'failed.html'
@@ -30,12 +33,14 @@ def signup_view(request):
 
     return render(request, template_name, {'form':form})
 
-
+#-------------------------------------create a new function for login  user---------------------------------------------------------
 def login_view(request):
+    #----------------------------------here is the function logic-----------------------------------------------------------------
     if request.method == 'GET':
         #Display Login Page
         login_form = LoginForm()
         template_name = 'login.html'
+    #---------------------------------------Elif part---------------------------------------------------------------------------------
     elif request.method == 'POST':
         #Process The Data
         login_form = LoginForm(request.POST)
@@ -71,8 +76,9 @@ def login_view(request):
 
     return render(request,template_name,{'login_form':login_form})
 
-
+#-------------------------------------------Create a new function for post --------------------------------------------------------------
 def post_view(request):
+    #-----------------------------------------here is the function logic------------------------------------------------------------
     user = check_validation(request)
 
     if user:
@@ -98,10 +104,11 @@ def post_view(request):
     else:
         return redirect('/login/')
 
-
+#--------------------------------------------Create a new functions to show the all post of user--------------------------------------
 def feed_view(request):
     user = check_validation(request)
     if user:
+        #-------------------------------------here is the functions logic---------------------------------------------------------------
 
         posts = PostModel.objects.all().order_by('-created_on',)
 
@@ -119,8 +126,9 @@ def feed_view(request):
 
 
 
-
+#----------------------------------------------Create a new functions to like the user post-------------------------------------------
 def like_view(request):
+    #-------------------------------------------here is the function logic------------------------------------------------------------
     user = check_validation(request)
     if user and request.method == 'POST':
         form = LikeForm(request.POST)
@@ -137,8 +145,9 @@ def like_view(request):
     else:
         return redirect('/login/')
 
-
+#------------------------------------------------Create a new functions to comment on a user post---------------------------------------
 def comment_view(request):
+    #----------------------------------------------here is the function logic-------------------------------------------------------
     user = check_validation(request)
     if user and request.method == 'POST':
         form = CommentForm(request.POST)
@@ -158,8 +167,9 @@ def comment_view(request):
 
 
 
-#For validating the session
+# -----------------------------------------------Create a functions for validating the session---------------------------------------------
 def check_validation(request):
+    #----------------------------------------------here is the function logic----------------------------------------------------------
     if request.COOKIES.get('session_token'):
         session = SessionToken.objects.filter(session_token=request.COOKIES.get('session_token')).first()
         if session:
