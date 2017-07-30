@@ -10,6 +10,8 @@ from django.contrib.auth.hashers import make_password,check_password
 from instagram.settings import BASE_DIR
 from django.utils import timezone
 from imgurpython import ImgurClient
+from django.contrib.auth import logout
+from django.http import HttpResponseRedirect
 # Create your views here.
 def signup_view(request):
     #------------------------------here is the logic of the functions--------------------------------------------------------
@@ -180,6 +182,6 @@ def check_validation(request):
         return None
 
 
-# def logout_view(request):
-#     logout(request)
-#     return redirect('/login/')
+def logout_view(request):
+    logout(request)
+    return redirect('/login/')

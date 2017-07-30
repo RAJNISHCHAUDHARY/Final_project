@@ -7,7 +7,7 @@
     <title>Title</title>
     <style>
         body{
-    background:url('2.jpg');
+
     background-size:100% 620px;
     padding-top:80px;
     padding-left:100px;
@@ -36,14 +36,14 @@ margin-right:5px;
 </head>
 <body>
     <div class="nav" align="center">
-    <form method="post" action="/post/" align="center">
+     <form method="post" action="/post/" align="center">
         {% csrf_token %}
-        <input type="submit" class="btn-default btn" value="Create Post">
-    <hr>
-    </form>
+        <input type="submit" class="btn-default btn" value="Create Post"><hr>
+         <a href="/login/"><input type="button" class="btn btn-info" value="logout"> </a>
+     </form>
 
 
-    {% for post in posts %}
+     {% for post in posts %}
 
 
         <h3> Posted by:{{ post.user.username }} </h3>
@@ -85,6 +85,6 @@ margin-right:5px;
 
     {% endfor %}
 
-        </div>
+    </div>
 </body>
 </html>
