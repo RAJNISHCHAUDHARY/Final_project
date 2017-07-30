@@ -178,3 +178,8 @@ def check_validation(request):
                 return session.user
     else:
         return None
+
+
+# def logout_view(request):
+#     logout(request)
+#     return redirect('/login/')
